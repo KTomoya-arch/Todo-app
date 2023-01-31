@@ -28,6 +28,24 @@
   color: #61dafb;
 }
 
+.input-area {
+  margin: 0 auto;
+  background-color: lightblue;
+  height: 100px;
+  width: 60%;
+}
+
+h1 {
+  text-align: center;
+}
+
+.todo-area {
+  margin: 0 auto;
+  background-color: greenyellow;
+  width: 60%;
+  height: 300px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
