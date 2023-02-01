@@ -1,17 +1,17 @@
 import React, { FC, useState } from "react";
 
 const InputTodo = (props: any) => {
-  const { todoText, onChange, onClick } = props;
+  const { todoText, onChangeTodoText, onClickAdd } = props;
   return (
     <>
       <div className="input-area">
         <input
           type="text"
-          placeholder="追加したいタスクを入力する"
+          placeholder="タスクを入力する"
           value={todoText}
-          onChange={onChange}
+          onChange={onChangeTodoText}
         />
-        <button onClick={onClick}>追加</button>
+        <button onClick={onClickAdd}>追加</button>
       </div>
     </>
   );
