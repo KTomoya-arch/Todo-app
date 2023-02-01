@@ -7,7 +7,7 @@ const InputTodo = (props: any) => {
       <div className="input-area">
         <input
           type="text"
-          placeholder="追加したいタスクを入力する"
+          placeholder="タスクを入力する"
           value={todoText}
           onChange={onChangeTodoText}
         />
