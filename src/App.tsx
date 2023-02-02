@@ -37,8 +37,12 @@ function App() {
     setCompleteTodos(newCompleteTodos);
   };
 
-  const onClickReturn = () => {
-    alert();
+  const onClickReturn = (index: any) => {
+    const newCompleteTodos = [...completeTodos];
+    newCompleteTodos.splice(index, 1);
+    setCompleteTodos(newCompleteTodos);
+    const newIncompleteTodos = [...incompleteTodos, completeTodos[index]];
+    setIncompleteTodos(newIncompleteTodos);
   };
 
   return (

@@ -1,5 +1,3 @@
-import React, { FC, useState } from "react";
-
 const InputTodo = (props: any) => {
   const { todoText, onChangeTodoText, onClickAdd } = props;
   return (
