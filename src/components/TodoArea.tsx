@@ -10,12 +10,13 @@ const TodoArea = (props: any) => {
           return (
             <div key={todo}>
               <li>{todo}</li>
+              <button>完了</button>
+              <button>削除</button>
             </div>
           )
         })}
       </ul>
-      <button>完了済みを削除</button>
-      <button>やることをクリア</button>
+      
     </div>
   );
 };
