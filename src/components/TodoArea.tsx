@@ -1,7 +1,7 @@
 import React from "react";
 
 const TodoArea = (props: any) => {
-  const { incompleteTodos, onClickEdit, onClickDelete } = props;
+  const { incompleteTodos, onClickComplete, onClickEdit, onClickDelete } = props;
 
 
   return (
@@ -11,7 +11,7 @@ const TodoArea = (props: any) => {
           return (
             <div key={todo}>
               <li>{todo}</li>
-              <button>完了</button>
+              <button onClick={() => onClickComplete(index)}>完了</button>
               <button onClick={() => onClickEdit(index)}>編集</button>
               <button onClick={() => onClickDelete(index)}>削除</button>
             </div>
