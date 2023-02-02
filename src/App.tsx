@@ -17,11 +17,20 @@ function App() {
     setTodoText('');
   };
 
+  const onClickEdit = (index: any) => {
+    alert(index);
+  }
+
+  const onClickDelete = (index: any) => {
+    const newTodos = [...incompleteTodos].splice(index+1);
+    setIncompleteTodos(newTodos);
+  }
+
   return (
     <>
       <h1>やることリスト</h1>
       <InputTodo onChangeTodoText={onChangeTodoText} todoText={todoText} onClickAdd={onClickAdd} />
-      <TodoArea incompleteTodos={incompleteTodos}/>
+      <TodoArea incompleteTodos={incompleteTodos} onClickEdit={onClickEdit} onClickDelete={onClickDelete}/>
     </>
   );
 }
