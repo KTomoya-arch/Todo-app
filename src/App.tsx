@@ -8,8 +8,8 @@ import DoneArea from "./components/DoneArea";
 function App() {
   const [todoText, setTodoText] = useState("");
 
-  const [incompleteTodos, setIncompleteTodos] = useState(["テスト", "テスト2"]);
-  const [completeTodos, setCompleteTodos] = useState(["テスト3"]);
+  const [incompleteTodos, setIncompleteTodos] = useState<string[]>([]);
+  const [completeTodos, setCompleteTodos] = useState<string[]>([]);
 
   const onChangeTodoText = (e: any) => setTodoText(e.target.value);
 
