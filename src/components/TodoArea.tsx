@@ -1,10 +1,12 @@
 import React from "react";
 
 const TodoArea = (props: any) => {
-  const { incompleteTodos, onClickComplete, onClickEdit, onClickDelete } = props;
-
+  const { incompleteTodos, onClickComplete, onClickEdit, onClickDelete, editFlag } = props;
+  
+  console.log(editFlag);
 
   return (
+    
     <div className="todo-area">
       <ul>
         {incompleteTodos.map((todo: any, index: any) => {

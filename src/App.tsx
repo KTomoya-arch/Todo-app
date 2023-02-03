@@ -7,12 +7,11 @@ import DoneArea from "./components/DoneArea";
 
 function App() {
   const [todoText, setTodoText] = useState("");
-
   const [incompleteTodos, setIncompleteTodos] = useState<string[]>([]);
   const [completeTodos, setCompleteTodos] = useState<string[]>([]);
+  const [editFlag, setEditFlag] = useState(true);
 
   const onChangeTodoText = (e: any) => setTodoText(e.target.value);
-
   const onClickAdd = () => {
     const newTodos = [...incompleteTodos, todoText];
     setIncompleteTodos(newTodos);
@@ -20,7 +19,7 @@ function App() {
   };
 
   const onClickEdit = (index: any) => {
-    alert(index);
+    setEditFlag(false);
   };
 
   const onClickDelete = (index: any) => {
@@ -58,6 +57,7 @@ function App() {
         onClickComplete={onClickComplete}
         onClickEdit={onClickEdit}
         onClickDelete={onClickDelete}
+        editFlag={editFlag}
       />
       <DoneArea completeTodos={completeTodos} onClickReturn={onClickReturn} />
     </>
