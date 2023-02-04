@@ -13,18 +13,15 @@ function App() {
   const [inputTodo, setInputTodo] = useState<string>("");
   const [editFlag, setEditFlag] = useState(false);
 
-  const onChangeTodoText = (e: any) => setTodoText(e.target.value);
+  const onChangeTodoText = (e: any) => setInputTodo(e.target.value);
 
   const onClickAdd = () => {
     const newTodos = [
       ...todoText,
       { id: nanoid(), content: inputTodo, completed: false },
     ];
+    console.log(newTodos);
     setTodoText(newTodos);
-  };
-
-  const onClickEdit = (index: any) => {
-    setEditFlag(true);
   };
 
   const onClickDelete = (index: any) => {
@@ -60,7 +57,6 @@ function App() {
       <TodoArea
         todoText={todoText}
         onClickComplete={onClickComplete}
-        onClickEdit={onClickEdit}
         onClickDelete={onClickDelete}
       />
     </>

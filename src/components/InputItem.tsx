@@ -10,8 +10,13 @@ const InputItem = ({
   return (
     <>
       <div className="input-area">
-        <input type="text" placeholder="タスクを入力する" />
-        <button>追加</button>
+        <input
+          type="text"
+          placeholder="タスクを入力する"
+          value={inputTodo}
+          onChange={onChangeTodoText}
+        />
+        <button onClick={onClickAdd}>追加</button>
       </div>
     </>
   );
