@@ -8,8 +8,7 @@ const TodoArea = ({
   onClickUpdate,
   editTarget,
   onChangeUpdateText,
-  updateTodo,
-  updatedFlag,
+  editInput,
 }: {
   todoText: Todo[];
   onClickComplete: (id: string, index: number) => void;
@@ -18,8 +17,7 @@ const TodoArea = ({
   onClickUpdate: (id: string, index: number) => void;
   editTarget: string;
   onChangeUpdateText: (e: any) => void;
-  updateTodo: string;
-  updatedFlag: boolean;
+  editInput: string;
 }) => {
   return (
     <div className="todo-area">
@@ -32,7 +30,7 @@ const TodoArea = ({
                   <li>
                     <input
                       type="text"
-                      value={updateTodo}
+                      value={editInput}
                       onChange={onChangeUpdateText}
                     />
                   </li>

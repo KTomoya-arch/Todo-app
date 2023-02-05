@@ -14,8 +14,8 @@ function App() {
   const onChangeTodoText = (e: any) => setInputTodo(e.target.value);
   const [editTarget, setEditTarget] = useState<string>("");
   const [updateTodo, setUpdateTodo] = useState<string>("");
-  const onChangeUpdateText = (e: any) => setUpdateTodo(e.target.value);
-  const [updatedFlag, setUpdatedFlag] = useState(false);
+  const onChangeUpdateText = (e: any) => setEditInput(e.target.value);
+  const [editInput, setEditInput] = useState<any>("");
 
   const onClickAdd = () => {
     const newTodos = [
@@ -28,6 +28,8 @@ function App() {
 
   const onClickEdit = (id: string, index: number) => {
     setEditTarget(id);
+    const newEdit = todoText.find((todo) => todo.id === id);
+    setEditInput(newEdit?.content);
   };
 
   const onClickDelete = (id: string, index: number) => {
@@ -41,10 +43,9 @@ function App() {
     const targetIndex = newTodos.findIndex((todo) => {
       return todo.id === id;
     });
-    newTodos[targetIndex].content = updateTodo;
+    newTodos[targetIndex].content = editInput;
     setTodoText(newTodos);
-    console.log(todoText);
-    updatedFlag || setUpdatedFlag(true);
+    setEditTarget("");
   };
 
   const onClickComplete = (id: string, index: number) => {
@@ -69,8 +70,7 @@ function App() {
         onClickUpdate={onClickUpdate}
         editTarget={editTarget}
         onChangeUpdateText={onChangeUpdateText}
-        updateTodo={updateTodo}
-        updatedFlag={updatedFlag}
+        editInput={editInput}
       />
     </>
   );
