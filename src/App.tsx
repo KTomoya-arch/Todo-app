@@ -11,39 +11,46 @@ function App() {
     { id: nanoid(), content: "テスト2", completed: false },
   ]);
   const [inputTodo, setInputTodo] = useState<string>("");
-  const [editFlag, setEditFlag] = useState(false);
-
   const onChangeTodoText = (e: any) => setInputTodo(e.target.value);
+  const [editTarget, setEditTarget] = useState<string>("");
+  const [updateTodo, setUpdateTodo] = useState<string>("");
+  const onChangeUpdateText = (e: any) => setUpdateTodo(e.target.value);
+  const [updatedFlag, setUpdatedFlag] = useState(false);
 
   const onClickAdd = () => {
     const newTodos = [
       ...todoText,
       { id: nanoid(), content: inputTodo, completed: false },
     ];
-    console.log(newTodos);
+    setTodoText(newTodos);
+    setInputTodo("");
+  };
+
+  const onClickEdit = (id: string, index: number) => {
+    setEditTarget(id);
+  };
+
+  const onClickDelete = (id: string, index: number) => {
+    const newTodos = [...todoText];
+    newTodos.splice(index, 1);
     setTodoText(newTodos);
   };
 
-  const onClickDelete = (index: any) => {
-    // const newTodos = [...incompleteTodos];
-    // newTodos.splice(index, 1);
-    // setIncompleteTodos(newTodos);
+  const onClickUpdate = (id: string, index: number) => {
+    const newTodos = [...todoText];
+    const targetIndex = newTodos.findIndex((todo) => {
+      return todo.id === id;
+    });
+    newTodos[targetIndex].content = updateTodo;
+    setTodoText(newTodos);
+    console.log(todoText);
+    updatedFlag || setUpdatedFlag(true);
   };
 
-  const onClickComplete = (index: any) => {
-    // const newIncompleteTodos = [...incompleteTodos];
-    // newIncompleteTodos.splice(index, 1);
-    // setIncompleteTodos(newIncompleteTodos);
-    // const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
-    // setCompleteTodos(newCompleteTodos);
-  };
-
-  const onClickReturn = (index: any) => {
-    // const newCompleteTodos = [...completeTodos];
-    // newCompleteTodos.splice(index, 1);
-    // setCompleteTodos(newCompleteTodos);
-    // const newIncompleteTodos = [...incompleteTodos, completeTodos[index]];
-    // setIncompleteTodos(newIncompleteTodos);
+  const onClickComplete = (id: string, index: number) => {
+    const newTodos = [...todoText];
+    newTodos.splice(index, 1);
+    setTodoText(newTodos);
   };
 
   return (
@@ -56,8 +63,14 @@ function App() {
       />
       <TodoArea
         todoText={todoText}
+        onClickEdit={onClickEdit}
         onClickComplete={onClickComplete}
         onClickDelete={onClickDelete}
+        onClickUpdate={onClickUpdate}
+        editTarget={editTarget}
+        onChangeUpdateText={onChangeUpdateText}
+        updateTodo={updateTodo}
+        updatedFlag={updatedFlag}
       />
     </>
   );

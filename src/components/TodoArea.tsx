@@ -3,22 +3,58 @@ import { Todo } from "../types/todo";
 const TodoArea = ({
   todoText,
   onClickComplete,
+  onClickEdit,
   onClickDelete,
+  onClickUpdate,
+  editTarget,
+  onChangeUpdateText,
+  updateTodo,
+  updatedFlag,
 }: {
   todoText: Todo[];
-  onClickComplete: (id: string) => void;
-  onClickDelete: (id: string) => void;
+  onClickComplete: (id: string, index: number) => void;
+  onClickEdit: (id: string, index: number) => void;
+  onClickDelete: (id: string, index: number) => void;
+  onClickUpdate: (id: string, index: number) => void;
+  editTarget: string;
+  onChangeUpdateText: (e: any) => void;
+  updateTodo: string;
+  updatedFlag: boolean;
 }) => {
   return (
     <div className="todo-area">
       <ul>
         {todoText.map((todo, index) => {
-          console.log(todo.content);
           return (
             <div key={todo.id}>
-              <li>{todo.content}</li>
-              <button onClick={() => onClickComplete(todo.id)}>完了</button>
-              <button onClick={() => onClickDelete(todo.id)}>削除</button>
+              {editTarget === todo.id && (
+                <>
+                  <li>
+                    <input
+                      type="text"
+                      value={updateTodo}
+                      onChange={onChangeUpdateText}
+                    />
+                  </li>
+                  <button onClick={() => onClickUpdate(todo.id, index)}>
+                    更新
+                  </button>
+                </>
+              )}
+              {editTarget === todo.id || (
+                <>
+                  <li>{todo.content}</li>
+                  <button onClick={() => onClickComplete(todo.id, index)}>
+                    完了
+                  </button>
+                  <button onClick={() => onClickEdit(todo.id, index)}>
+                    編集
+                  </button>
+                  <button onClick={() => onClickDelete(todo.id, index)}>
+                    削除
+                  </button>
+                </>
+              )}
             </div>
           );
         })}
