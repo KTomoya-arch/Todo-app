@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import { Todo } from "./types/todo";
 import "./App.css";
@@ -6,12 +6,18 @@ import InputItem from "./components/InputItem";
 import TodoArea from "./components/TodoArea";
 
 function App() {
-  const [todoText, setTodoText] = useState<Todo[]>([]);
+  const todoList = localStorage.getItem("myTodos");
+  const tmp: Todo[] = JSON.parse(todoList || "");
+  const [todoText, setTodoText] = useState<Todo[]>(tmp);
   const [inputTodo, setInputTodo] = useState<string>("");
   const onChangeTodoText = (e: any) => setInputTodo(e.target.value);
   const [editTarget, setEditTarget] = useState<string>("");
   const onChangeUpdateText = (e: any) => setEditInput(e.target.value);
   const [editInput, setEditInput] = useState<any>("");
+
+  useEffect(() => {
+    localStorage.setItem("myTodos", JSON.stringify(todoText));
+  }, [todoText]);
 
   const onClickAdd = () => {
     if (!inputTodo || "") {
