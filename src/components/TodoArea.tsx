@@ -24,7 +24,7 @@ const TodoArea = ({
       <ul>
         {todoText.map((todo, index) => {
           return (
-            <div key={todo.id}>
+            <div className="task" key={todo.id}>
               {editTarget === todo.id && (
                 <>
                   <li>
@@ -42,13 +42,22 @@ const TodoArea = ({
               {editTarget === todo.id || (
                 <>
                   <li>{todo.content}</li>
-                  <button onClick={() => onClickComplete(todo.id, index)}>
+                  <button
+                    className="btn"
+                    onClick={() => onClickComplete(todo.id, index)}
+                  >
                     完了
                   </button>
-                  <button onClick={() => onClickEdit(todo.id, index)}>
+                  <button
+                    className="btn"
+                    onClick={() => onClickEdit(todo.id, index)}
+                  >
                     編集
                   </button>
-                  <button onClick={() => onClickDelete(todo.id, index)}>
+                  <button
+                    className="btn"
+                    onClick={() => onClickDelete(todo.id, index)}
+                  >
                     削除
                   </button>
                 </>

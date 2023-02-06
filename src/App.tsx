@@ -6,18 +6,17 @@ import InputItem from "./components/InputItem";
 import TodoArea from "./components/TodoArea";
 
 function App() {
-  const [todoText, setTodoText] = useState<Todo[]>([
-    { id: nanoid(), content: "テスト", completed: false },
-    { id: nanoid(), content: "テスト2", completed: false },
-  ]);
+  const [todoText, setTodoText] = useState<Todo[]>([]);
   const [inputTodo, setInputTodo] = useState<string>("");
   const onChangeTodoText = (e: any) => setInputTodo(e.target.value);
   const [editTarget, setEditTarget] = useState<string>("");
-  const [updateTodo, setUpdateTodo] = useState<string>("");
   const onChangeUpdateText = (e: any) => setEditInput(e.target.value);
   const [editInput, setEditInput] = useState<any>("");
 
   const onClickAdd = () => {
+    if (!inputTodo || "") {
+      return;
+    }
     const newTodos = [
       ...todoText,
       { id: nanoid(), content: inputTodo, completed: false },
@@ -56,7 +55,7 @@ function App() {
 
   return (
     <>
-      <h1>やることリスト</h1>
+      <h1>ToDo List</h1>
       <InputItem
         inputTodo={inputTodo}
         onChangeTodoText={onChangeTodoText}

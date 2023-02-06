@@ -46,6 +46,10 @@ h1 {
   height: 300px;
 }
 
+.task {
+  margin: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
