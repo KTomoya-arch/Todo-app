@@ -1,3 +1,6 @@
+import Button from "@mui/material/Button";
+import Input from "@mui/material/Input";
+
 const InputItem = ({
   inputTodo,
   onChangeTodoText,
@@ -10,13 +13,15 @@ const InputItem = ({
   return (
     <>
       <div className="input-area">
-        <input
+        <Input
           type="text"
           placeholder="タスクを入力する"
           value={inputTodo}
           onChange={onChangeTodoText}
         />
-        <button onClick={onClickAdd}>追加</button>
+        <Button className="add" variant="contained" onClick={onClickAdd}>
+          追加
+        </Button>
       </div>
     </>
   );
