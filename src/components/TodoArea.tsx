@@ -27,6 +27,8 @@ const TodoArea = ({
   const ButtonA = styled(Button)`
     display: none;
   `;
+  const ButtonB = styled(Button)``;
+
   const Div = styled.div`
     display: flex;
     &:hover Button {
@@ -35,7 +37,7 @@ const TodoArea = ({
   `;
 
   const FormG = styled(FormGroup)`
-    width: 500px;
+    width: 300px;
   `;
   return (
     <div className="todo-area">
@@ -52,9 +54,9 @@ const TodoArea = ({
                       onChange={onChangeUpdateText}
                     />
                   </List>
-                  <ButtonA onClick={() => onClickUpdate(todo.id, index)}>
+                  <ButtonB onClick={() => onClickUpdate(todo.id, index)}>
                     更新
-                  </ButtonA>
+                  </ButtonB>
                 </>
               )}
               {editTarget === todo.id || (
@@ -64,28 +66,22 @@ const TodoArea = ({
                       <FormControlLabel
                         control={<Checkbox />}
                         label={todo.content}
+                        onChange={() => onClickComplete(todo.id, index)}
                       />
                     </FormG>
-                    <ButtonA>編集</ButtonA>
+                    <ButtonA
+                      className="btn"
+                      onClick={() => onClickEdit(todo.id, index)}
+                    >
+                      編集
+                    </ButtonA>
+                    <ButtonA
+                      className="btn"
+                      onClick={() => onClickDelete(todo.id, index)}
+                    >
+                      削除
+                    </ButtonA>
                   </Div>
-                  <Button
-                    className="btn"
-                    onClick={() => onClickComplete(todo.id, index)}
-                  >
-                    完了
-                  </Button>
-                  <Button
-                    className="btn"
-                    onClick={() => onClickEdit(todo.id, index)}
-                  >
-                    編集
-                  </Button>
-                  <Button
-                    className="btn"
-                    onClick={() => onClickDelete(todo.id, index)}
-                  >
-                    削除
-                  </Button>
                 </>
               )}
             </div>
