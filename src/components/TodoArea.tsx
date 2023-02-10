@@ -16,9 +16,9 @@ const TodoArea = ({
   editInput,
 }: {
   todoText: Todo[];
-  onClickComplete: (id: string, index: number) => void;
-  onClickEdit: (id: string, index: number) => void;
-  onClickDelete: (id: string, index: number) => void;
+  onClickComplete: (id: string, index: number, e: any) => void;
+  onClickEdit: (id: string) => void;
+  onClickDelete: (index: number) => void;
   onClickUpdate: (id: string, index: number) => void;
   editTarget: string;
   onChangeUpdateText: (e: any) => void;
@@ -39,6 +39,7 @@ const TodoArea = ({
   const FormG = styled(FormGroup)`
     width: 300px;
   `;
+
   return (
     <div className="todo-area">
       <ul>
@@ -65,19 +66,33 @@ const TodoArea = ({
                     <FormG>
                       <FormControlLabel
                         control={<Checkbox />}
-                        label={todo.content}
-                        onChange={() => onClickComplete(todo.id, index)}
+                        label={
+                          <span
+                            style={
+                              todo.completed
+                                ? {
+                                    textDecoration: "line-through",
+                                    opacity: 0.5,
+                                  }
+                                : {}
+                            }
+                          >
+                            {todo.content}
+                          </span>
+                        }
+                        checked={todo.completed}
+                        onChange={(e) => onClickComplete(todo.id, index, e)}
                       />
                     </FormG>
                     <ButtonA
                       className="btn"
-                      onClick={() => onClickEdit(todo.id, index)}
+                      onClick={() => onClickEdit(todo.id)}
                     >
                       編集
                     </ButtonA>
                     <ButtonA
                       className="btn"
-                      onClick={() => onClickDelete(todo.id, index)}
+                      onClick={() => onClickDelete(index)}
                     >
                       削除
                     </ButtonA>
