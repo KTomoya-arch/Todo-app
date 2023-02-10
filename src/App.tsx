@@ -4,8 +4,6 @@ import { Todo } from "./types/todo";
 import "./App.css";
 import InputItem from "./components/InputItem";
 import TodoArea from "./components/TodoArea";
-import { Button } from "@mui/material";
-import styled from "@emotion/styled";
 
 function App() {
   const todoList = localStorage.getItem("myTodos");
@@ -33,13 +31,13 @@ function App() {
     setInputTodo("");
   };
 
-  const onClickEdit = (id: string, index: number) => {
+  const onClickEdit = (id: string) => {
     setEditTarget(id);
     const newEdit = todoText.find((todo) => todo.id === id);
     setEditInput(newEdit?.content);
   };
 
-  const onClickDelete = (id: string, index: number) => {
+  const onClickDelete = (index: number) => {
     const newTodos = [...todoText];
     newTodos.splice(index, 1);
     setTodoText(newTodos);
@@ -55,12 +53,11 @@ function App() {
     setEditTarget("");
   };
 
-  const onClickComplete = (id: string, index: number) => {
+  const onClickComplete = (id: string, index: number, e: any) => {
     const newTodos = [...todoText];
-    newTodos.splice(index, 1);
+    newTodos[index].completed = e.target.checked;
     setTodoText(newTodos);
   };
-
   return (
     <>
       <h1>ToDo List</h1>

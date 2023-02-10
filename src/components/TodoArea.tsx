@@ -16,9 +16,9 @@ const TodoArea = ({
   editInput,
 }: {
   todoText: Todo[];
-  onClickComplete: (id: string, index: number) => void;
-  onClickEdit: (id: string, index: number) => void;
-  onClickDelete: (id: string, index: number) => void;
+  onClickComplete: (id: string, index: number, e: any) => void;
+  onClickEdit: (id: string) => void;
+  onClickDelete: (index: number) => void;
   onClickUpdate: (id: string, index: number) => void;
   editTarget: string;
   onChangeUpdateText: (e: any) => void;
@@ -27,6 +27,8 @@ const TodoArea = ({
   const ButtonA = styled(Button)`
     display: none;
   `;
+  const ButtonB = styled(Button)``;
+
   const Div = styled.div`
     display: flex;
     &:hover Button {
@@ -35,8 +37,9 @@ const TodoArea = ({
   `;
 
   const FormG = styled(FormGroup)`
-    width: 500px;
+    width: 300px;
   `;
+
   return (
     <div className="todo-area">
       <ul>
@@ -52,9 +55,9 @@ const TodoArea = ({
                       onChange={onChangeUpdateText}
                     />
                   </List>
-                  <ButtonA onClick={() => onClickUpdate(todo.id, index)}>
+                  <ButtonB onClick={() => onClickUpdate(todo.id, index)}>
                     更新
-                  </ButtonA>
+                  </ButtonB>
                 </>
               )}
               {editTarget === todo.id || (
@@ -63,29 +66,37 @@ const TodoArea = ({
                     <FormG>
                       <FormControlLabel
                         control={<Checkbox />}
-                        label={todo.content}
+                        label={
+                          <span
+                            style={
+                              todo.completed
+                                ? {
+                                    textDecoration: "line-through",
+                                    opacity: 0.5,
+                                  }
+                                : {}
+                            }
+                          >
+                            {todo.content}
+                          </span>
+                        }
+                        checked={todo.completed}
+                        onChange={(e) => onClickComplete(todo.id, index, e)}
                       />
                     </FormG>
-                    <ButtonA>編集</ButtonA>
+                    <ButtonA
+                      className="btn"
+                      onClick={() => onClickEdit(todo.id)}
+                    >
+                      編集
+                    </ButtonA>
+                    <ButtonA
+                      className="btn"
+                      onClick={() => onClickDelete(index)}
+                    >
+                      削除
+                    </ButtonA>
                   </Div>
-                  <Button
-                    className="btn"
-                    onClick={() => onClickComplete(todo.id, index)}
-                  >
-                    完了
-                  </Button>
-                  <Button
-                    className="btn"
-                    onClick={() => onClickEdit(todo.id, index)}
-                  >
-                    編集
-                  </Button>
-                  <Button
-                    className="btn"
-                    onClick={() => onClickDelete(todo.id, index)}
-                  >
-                    削除
-                  </Button>
                 </>
               )}
             </div>
